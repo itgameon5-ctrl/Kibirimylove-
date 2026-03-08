@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Zainab ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script&display=swap" rel="stylesheet">
+<style>
+body{
+  margin:0;
+  font-family:'Dancing Script', cursive;
+  background:black;
+  color:white;
+  overflow:hidden;
+  text-align:center;
+}
+
+/* Intro Scan */
+#intro{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:black;
+}
+
+.scanbox{
+  width:220px;
+  height:220px;
+  border:3px solid red;
+  position:relative;
+  margin-bottom:20px;
+}
+
+.scanline{
+  position:absolute;
+  width:100%;
+  height:4px;
+  background:red;
+  animation:scan 2s infinite;
+}
+
+@keyframes scan{
+  0%{top:0}
+  100%{top:100%}
+}
+
+#count{
+  font-size:50px;
+  margin-top:10px;
+}
+
+/* Main content */
+#main{
+  display:none;
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb') no-repeat center center;
+  background-size:cover;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+/* Sorry Card */
+.card{
+  background:linear-gradient(135deg, #ff3c3c, #ff8c8c);
+  padding:35px;
+  border-radius:30px;
+  max-width:380px;
+  box-shadow:0 0 30px rgba(255,0,0,0.7);
+  text-align:center;
+  font-size:22px;
+  font-family:'Pacifico', cursive;
+}
+
+/* Heart collage */
+.heart{
+  width:350px;
+  display:grid;
+  grid-template-columns:repeat(6,50px);
+  grid-gap:6px;
+  margin:25px 0;
+}
+
+.heart img{
+  width:50px;
+  height:50px;
+  border-radius:12px;
+  object-fit:cover;
+  box-shadow:0 0 15px rgba(255,0,0,0.6);
+}
+
+/* Floating hearts & emojis */
+.float{
+  position:absolute;
+  bottom:-20px;
+  animation:floatUp linear infinite;
+  font-size:20px;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-120vh);opacity:0}
+}
+
+button{
+  margin-top:18px;
+  padding:12px 22px;
+  border:none;
+  border-radius:15px;
+  cursor:pointer;
+  font-family:'Dancing Script', cursive;
+  font-size:18px;
+  background:rgba(255,255,255,0.3);
+  color:white;
+}
+
+/* Mini game */
+#game{
+  margin-top:20px;
+  width:100%;
+  height:200px;
+  position:relative;
+  overflow:hidden;
+  border:2px dashed white;
+  border-radius:20px;
+}
+.heartgame{
+  position:absolute;
+  font-size:30px;
+  cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<!-- Background music -->
+<audio id="bgmusic" autoplay loop>
+  <source src="BackToTheBasics.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Intro Scan -->
+<div id="intro">
+  <div class="scanbox"><div class="scanline"></div></div>
+  <h3>Scanning message for Zainab...</h3>
+  <div id="count">3</div>
+</div>
+
+<!-- Main Content -->
+<div id="main">
+
+  <!-- Heart collage -->
+  <div class="heart">
+    <img src="https://picsum.photos/100?1">
+    <img src="https://picsum.photos/100?2">
+    <img src="https://picsum.photos/100?3">
+    <img src="https://picsum.photos/100?4">
+    <img src="https://picsum.photos/100?5">
+    <img src="https://picsum.photos/100?6">
+    <img src="https://picsum.photos/100?7">
+    <img src="https://picsum.photos/100?8">
+    <img src="https://picsum.photos/100?9">
+    <img src="https://picsum.photos/100?10">
+    <img src="https://picsum.photos/100?11">
+    <img src="https://picsum.photos/100?12">
+  </div>
+
+  <!-- Sorry Card -->
+  <div class="card">
+    <h2 id="title">Hey Zainab ❤️</h2>
+    <p id="text">I know you might be mad at me 😔</p>
+    <button onclick="next()">Tap here</button>
+  </div>
+
+  <!-- Mini game -->
+  <div id="game"></div>
+
+</div>
+
+<script>
+// Countdown intro
+let count = 3;
+let timer = setInterval(()=>{
+  count--;
+  document.getElementById("count").innerText = count;
+  if(count==0){
+    clearInterval(timer);
+    document.getElementById("intro").style.display="none";
+    document.getElementById("main").style.display="flex";
+  }
+},1000);
+
+// Tap-to-reveal messages
+let messages = [
+  "I know you might be mad at me 😔",
+  "And yeah... I get why",
+  "I'm not used to this type of love",
+  "Sometimes I mess up",
+  "But I care about you a lot ❤️",
+  "So I'm sorry my love 💌",
+  "Please don't stay mad too long",
+  "You still my favorite person 🫶",
+  "❤️"
+];
+let i = 0;
+function next(){
+  i++;
+  if(i<messages.length){
+    document.getElementById("text").innerText = messages[i];
+  } else {
+    document.getElementById("title").innerText = "That's all";
+    document.getElementById("text").innerText = "❤️";
+  }
+}
+
+// Floating hearts and sparkles
+for(let j=0;j<50;j++){
+  let heart=document.createElement("div");
+  heart.className="float";
+  heart.innerHTML = Math.random()>0.7?"✨":"❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(4+Math.random()*6)+"s";
+  heart.style.fontSize=(16+Math.random()*30)+"px";
+  document.body.appendChild(heart);
+}
+
+// Mini game: click hearts to score
+let game = document.getElementById('game');
+let score = 0;
+function spawnHeart(){
+  let h = document.createElement('div');
+  h.className='heartgame';
+  h.innerText='❤️';
+  h.style.left = Math.random()*90+'%';
+  h.style.top = Math.random()*80+'%';
+  h.onclick = function(){ 
+    score++; 
+    h.remove(); 
+    alert('You caught a heart! ❤️ Total: '+score); 
+  };
+  game.appendChild(h);
+}
+setInterval(spawnHeart,1500);
+</script>
+
+</body>
+</html>
